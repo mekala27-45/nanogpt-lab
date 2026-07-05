@@ -1,0 +1,6 @@
+# Normalize line endings to LF so CI (Linux) and Windows agree.
+* text=auto eol=lf
+*.pt binary
+*.bin binary
+*.png binary
+*.ipynb binary

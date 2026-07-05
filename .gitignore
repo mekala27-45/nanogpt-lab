@@ -1,0 +1,32 @@
+# Data & artifacts (regenerated). Anchored to repo root so they don't shadow
+# any src/ subpackage with the same name.
+/data/
+/checkpoints/
+/reports/
+/samples/
+*.pt
+*.bin
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.env
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

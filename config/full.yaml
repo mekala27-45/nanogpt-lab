@@ -1,0 +1,43 @@
+# Full config: for a GPU (Colab/Kaggle). Trains a ~25M-param char model on
+# TinyStories. Use `make train CONFIG=config/full.yaml` on a CUDA machine.
+seed: 1337
+
+data:
+  corpus: tinystories
+  url: "https://huggingface.co/datasets/roneneldan/TinyStories/resolve/main/TinyStoriesV2-GPT4-valid.txt"
+  sha256: ""        # large file; checksum verification skipped on the GPU path
+  cache_dir: "data"
+  val_fraction: 0.05
+
+model:
+  n_layer: 8
+  n_head: 8
+  n_embd: 512
+  block_size: 256
+  dropout: 0.1
+  mlp_ratio: 4
+  rope_theta: 10000.0
+  tie_weights: true
+  norm: rms
+  pos: rope
+  mlp: swiglu
+
+train:
+  batch_size: 64
+  max_iters: 20000
+  eval_interval: 1000
+  eval_iters: 200
+  warmup_iters: 500
+  lr: 6.0e-4
+  min_lr: 6.0e-5
+  weight_decay: 0.1
+  grad_clip: 1.0
+  device: auto
+  compile: true
+  out_dir: checkpoints
+
+generate:
+  max_new_tokens: 400
+  temperature: 0.8
+  top_k: 50
+  prompt: "Once upon a time"

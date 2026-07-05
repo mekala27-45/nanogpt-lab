@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nanogpt-lab"
+version = "0.1.0"
+description = "A GPT built from the attention up — RoPE, RMSNorm, SwiGLU, KV-cache — with ablations that prove why each component earns its place."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "NanoGPT-Lab" }]
+keywords = ["transformer", "gpt", "pytorch", "rope", "from-scratch", "language-model"]
+
+dependencies = [
+  "torch",
+  "numpy",
+  "pydantic",
+  "pydantic-settings",
+  "pyyaml",
+  "structlog",
+  "requests",
+  "tqdm",
+]
+
+[project.scripts]
+nanogpt-train = "nanogpt_lab.train:main"
+nanogpt-generate = "nanogpt_lab.model.generate:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+nanogpt_lab = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "C4", "SIM", "RUF"]
+ignore = ["N803", "N806", "N812"]  # ML-conventional names (X, Q, K, V) + `import ... as F`
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.mypy]
+python_version = "3.12"
+packages = ["nanogpt_lab"]
+mypy_path = "src"
+# Typed signatures required everywhere. We stop short of full --strict because
+# chasing `Any` through PyTorch tensor math yields noise, not safety.
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q --strict-markers"
+testpaths = ["tests"]
+markers = ["slow: trains a (tiny) model; deselect with -m 'not slow'"]
+
+[tool.coverage.run]
+branch = true
+source = ["nanogpt_lab"]

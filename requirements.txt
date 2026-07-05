@@ -1,0 +1,11 @@
+# Runtime deps — pinned. Torch pulled from the CPU-only index so the wheel is
+# lean and identical on aarch64 (local/Docker) and x86_64 (CI).
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.12.1+cpu
+numpy==2.1.3
+pydantic==2.9.2
+pydantic-settings==2.6.1
+pyyaml==6.0.2
+structlog==24.4.0
+requests==2.32.3
+tqdm==4.67.1
