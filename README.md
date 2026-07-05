@@ -4,7 +4,7 @@
 
 **A Llama-style, decoder-only transformer built from the attention up — RoPE · RMSNorm · SwiGLU · weight tying · KV-cache. No `nn.Transformer`.**
 
-[![CI](https://github.com/USER/nanogpt-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/USER/nanogpt-lab/actions/workflows/ci.yml)
+[![CI](https://github.com/mekala27-45/nanogpt-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/mekala27-45/nanogpt-lab/actions/workflows/ci.yml)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.12-ee4c2c.svg)](https://pytorch.org/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
